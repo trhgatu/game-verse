@@ -1,0 +1,266 @@
+/* Cyberpunk-themed CSS for Game Verse */
+
+/* Neon text shadow effect */
+.text-shadow-neon {
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 
+               0 0 10px rgba(6, 182, 212, 0.5), 
+               0 0 15px rgba(6, 182, 212, 0.3);
+}
+
+/* Glowing shadows for elements */
+.shadow-glow {
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.shadow-glow-cyan {
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.7);
+}
+
+.shadow-glow-red {
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.7);
+}
+
+.shadow-glow-purple {
+  box-shadow: 0 0 10px rgba(147, 51, 234, 0.7);
+}
+
+/* Animated neon border effect */
+.neon-border {
+  position: relative;
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  overflow: hidden;
+}
+
+.neon-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(6, 182, 212, 0.2),
+    transparent
+  );
+  animation: neon-border-shine 3s infinite;
+}
+
+@keyframes neon-border-shine {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Cyberpunk grid background */
+.cyberpunk-grid {
+  background-image: radial-gradient(circle, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Glowing hover effect for cards */
+.hover-glow {
+  transition: all 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
+  transform: translateY(-5px);
+}
+
+/* Scanline effect for cyberpunk feel */
+.scanlines {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanlines::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 0.5%,
+    transparent 1%
+  );
+  animation: scanline 8s linear infinite;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* Glitch text effect */
+.glitch-text {
+  position: relative;
+  animation: glitch-text 3s infinite;
+}
+
+.glitch-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.glitch-effect::before,
+.glitch-effect::after {
+  content: attr(data-content);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  clip: rect(44px, 450px, 56px, 0);
+}
+
+.glitch-effect::before {
+  left: 1px;
+  text-shadow: -2px 0 #ff00c1;
+  animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.glitch-effect::after {
+  left: -1px;
+  text-shadow: 2px 0 #00fff9;
+  animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+  0% {
+    clip: rect(24px, 450px, 90px, 0);
+  }
+  20% {
+    clip: rect(62px, 450px, 78px, 0);
+  }
+  40% {
+    clip: rect(15px, 450px, 34px, 0);
+  }
+  60% {
+    clip: rect(94px, 450px, 59px, 0);
+  }
+  80% {
+    clip: rect(66px, 450px, 81px, 0);
+  }
+  100% {
+    clip: rect(5px, 450px, 46px, 0);
+  }
+}
+
+@keyframes glitch-anim-2 {
+  0% {
+    clip: rect(71px, 450px, 37px, 0);
+  }
+  20% {
+    clip: rect(18px, 450px, 95px, 0);
+  }
+  40% {
+    clip: rect(52px, 450px, 27px, 0);
+  }
+  60% {
+    clip: rect(81px, 450px, 9px, 0);
+  }
+  80% {
+    clip: rect(44px, 450px, 92px, 0);
+  }
+  100% {
+    clip: rect(38px, 450px, 63px, 0);
+  }
+}
+
+@keyframes glitch-text {
+  0% {
+    text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+                -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
+                -0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  14% {
+    text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+                -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
+                -0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  15% {
+    text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+                0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+                -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  49% {
+    text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+                0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+                -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  50% {
+    text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+                0.05em 0 0 rgba(0, 255, 0, 0.75),
+                0 -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  99% {
+    text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+                0.05em 0 0 rgba(0, 255, 0, 0.75),
+                0 -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  100% {
+    text-shadow: -0.025em 0 0 rgba(255, 0, 0, 0.75),
+                -0.025em -0.025em 0 rgba(0, 255, 0, 0.75),
+                -0.025em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+}
+
+/* Cyberpunk dots for pagination ellipsis */
+.cyberpunk-dots {
+  position: relative;
+  font-family: monospace;
+  letter-spacing: 2px;
+  color: rgba(6, 182, 212, 0.7);
+  animation: dots-pulse 2s infinite ease-in-out;
+}
+
+@keyframes dots-pulse {
+  0%, 100% {
+    opacity: 0.5;
+    text-shadow: 0 0 2px rgba(6, 182, 212, 0.3);
+  }
+  50% {
+    opacity: 1;
+    text-shadow: 0 0 5px rgba(6, 182, 212, 0.7),
+                 0 0 10px rgba(6, 182, 212, 0.4);
+  }
+}
+
+/* Gradient animation for backgrounds */
+@keyframes animate-gradient-x {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: animate-gradient-x 15s ease infinite;
+}
