@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaGamepad, FaArrowLeft, FaFilter, FaStar } from 'react-icons/fa';
-import useGameStore, { Genre } from '../store/gameStore';
+import useGameStore from '../store/gameStore';
 import GameGrid from '../components/GameGrid';
 import { Button } from '../components/ui/button';
 

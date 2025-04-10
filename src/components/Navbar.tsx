@@ -319,7 +319,7 @@ const Navbar = () => {
                 <FaBell size={18} />
               </button>
 
-              <Button variant="glass" size="sm" className="border border-cyan-500/30 bg-gray-900/50 hover:bg-cyan-500/10 text-white hover:text-cyan-300 transition-all">
+              <Button size="sm" className="border border-cyan-500/30 bg-gray-900/50 hover:bg-cyan-500/10 text-white hover:text-cyan-300 transition-all">
                 <Link to="/profile" className="flex items-center space-x-2">
                   <FaUser size={14} className="text-cyan-400" />
                   <span>Account</span>
