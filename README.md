@@ -41,7 +41,7 @@ GameVerse is a modern, responsive web application for exploring video games. Bui
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/game-verse.git
+   git clone https://github.com/trhgatu/game-verse.git
    cd game-verse
    ```
 
