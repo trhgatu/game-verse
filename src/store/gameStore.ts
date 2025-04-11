@@ -35,7 +35,7 @@ interface GameStore {
   fetchNewReleases: () => Promise<void>;
   fetchGameById: (id: number) => Promise<void>;
   fetchGenres: () => Promise<void>;
-  fetchGamesByGenre: (genreId: number) => Promise<void>;
+  fetchGamesByGenre: (genreId: number, page?: number, pageSize?: number) => Promise<void>;
   searchGames: (searchText: string) => Promise<void>;
 }
 
@@ -131,10 +131,10 @@ const useGameStore = create<GameStore>((set, get) => ({
     }
   },
 
-  fetchGamesByGenre: async (genreId: number) => {
+  fetchGamesByGenre: async (genreId: number, page = 1, pageSize = 20) => {
     set({ isLoading: true, loading: true, error: null });
     try {
-      const response = await gameService.getGamesByGenre(genreId);
+      const response = await gameService.getGamesByGenre(genreId, page, pageSize);
       set({
         games: response.results,
         totalGames: response.count,

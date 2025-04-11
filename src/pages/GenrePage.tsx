@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaGamepad, FaArrowLeft, FaFilter, FaStar } from 'react-icons/fa';
 import useGameStore from '../store/gameStore';
-import GameGrid from '../components/GameGrid';
+import GamePagination from '../components/GamePagination';
 import { Button } from '../components/ui/button';
 
 interface Genre {
@@ -11,15 +11,18 @@ interface Genre {
   name: string;
   description?: string;
   image_background?: string;
+  games_count?: number;
 }
 
 const GenrePage = () => {
   const { genreId } = useParams<{ genreId: string }>();
-  const { genres, games, fetchGenres, fetchGamesByGenre, loading } = useGameStore();
+  const { genres, games, fetchGenres, fetchGamesByGenre, loading, totalGames } = useGameStore();
   
   const [currentGenre, setCurrentGenre] = useState<Genre | null>(null);
   const [sortOrder, setSortOrder] = useState<'rating' | 'name' | 'released'>('rating');
   const [showFilters, setShowFilters] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [gamesPerPage] = useState(20);
 
   useEffect(() => {
     if (!genres.length) {
@@ -27,9 +30,9 @@ const GenrePage = () => {
     }
     
     if (genreId) {
-      fetchGamesByGenre(parseInt(genreId));
+      fetchGamesByGenre(parseInt(genreId), currentPage, gamesPerPage);
     }
-  }, [genreId, fetchGenres, fetchGamesByGenre, genres.length]);
+  }, [genreId, fetchGenres, fetchGamesByGenre, genres.length, currentPage, gamesPerPage]);
 
   useEffect(() => {
     if (genreId && genres.length) {
@@ -39,6 +42,11 @@ const GenrePage = () => {
       }
     }
   }, [genreId, genres]);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const sortedGames = [...games].sort((a, b) => {
     switch (sortOrder) {
@@ -174,10 +182,21 @@ const GenrePage = () => {
                 </Link>
               </div>
             ) : (
-              <GameGrid 
-                title={`${currentGenre?.name || 'Genre'} Games`} 
-                games={sortedGames} 
-              />
+              <>
+                <div className="mb-4 text-gray-300">
+                  {currentGenre?.games_count && (
+                    <p>Total games in this genre: <span className="text-cyan-400 font-semibold">{currentGenre.games_count.toLocaleString()}</span></p>
+                  )}
+                </div>
+                <GamePagination 
+                  title={`${currentGenre?.name || 'Genre'} Games`} 
+                  games={sortedGames}
+                  gamesPerPage={gamesPerPage}
+                  currentPage={currentPage}
+                  totalGames={totalGames}
+                  onPageChange={handlePageChange}
+                />
+              </>
             )}
           </>
         )}
